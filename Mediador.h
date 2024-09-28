@@ -13,6 +13,7 @@ class Mediador {
 public:
     virtual void registrar (Colaborador* colaborador) = 0;
     virtual void enviar (const std:: string & mensaje, Colaborador* remitente) = 0;
+    virtual void enviarMensajePrivado(const std::string &mensaje, Colaborador *remitente, Colaborador *emisor) =0;
 };
 
 #endif //MEDIADOR_H

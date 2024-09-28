@@ -20,6 +20,11 @@ void Usuario::enviar(const std::string &mensaje)  {
     mediador->enviar(mensaje, this);
 }
 
+void Usuario::enviarPrivado(const std::string &mensaje) {
+    cout << get_nombre () << " envia: "<< mensaje <<std::endl<<std::endl;
+    mediador->enviarMensajePrivado(mensaje, this, this);
+}
+
 void Usuario::recibir(const std::string &mensaje)  {
-    std::cout <<get_nombre ()<<" recibo: "<< mensaje<<std::endl;
+    std::cout <<get_nombre ()<<" recibio: "<< mensaje<<std::endl;
 }

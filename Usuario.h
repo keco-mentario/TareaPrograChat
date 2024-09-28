@@ -12,6 +12,7 @@ class Usuario:public Colaborador {
 public:
     void enviar(const std::string &mensaje) override;
     void recibir(const std::string &mensaje) override;
+    void enviarPrivado(const std::string &mensaje);
     Usuario(Mediador * const mediador, const std::string &nombre);
     Usuario();
 };

@@ -3,7 +3,6 @@
 //
 
 #include "ChatMediador.h"
-#include "Usuario.h"
 #include "Colaborador.h"
 
 void ChatMediador::registrar(Colaborador *colaborador)  {
@@ -17,6 +16,20 @@ void ChatMediador::enviar(const std::string &mensaje, Colaborador *remitente) {
         Colaborador* colaborador = actual->get_valor();
         if (colaborador != remitente) {
             colaborador->recibir(mensaje);
+        }
+        actual = actual->get_siguiente();
+    }
+}
+
+void ChatMediador::enviarMensajePrivado(const std::string &mensaje, Colaborador *receptor, Colaborador *emisor) {
+    Nodo<Colaborador*>* actual = colaboradores.get_cabeza();
+    while (actual != nullptr) {
+        Colaborador* colaborador = actual->get_valor();
+        if ((colaborador != emisor) && (colaborador == receptor) ){
+            colaborador->recibir(mensaje);
+        }
+        if ((colaborador == emisor) && (colaborador != receptor) ){
+            colaborador->enviarPrivado(mensaje);
         }
         actual = actual->get_siguiente();
     }

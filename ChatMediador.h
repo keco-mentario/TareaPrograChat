@@ -8,6 +8,7 @@
 
 #include "Mediador.h"
 #include "ListaDoble.h"
+#include "Usuario.h"
 
 
 class ChatMediador: public Mediador {
@@ -16,6 +17,7 @@ private:
 public:
     void registrar(Colaborador *colaborador) override;
     void enviar(const std::string &mensaje, Colaborador *remitente) override;
+    void enviarMensajePrivado(const std::string &mensaje, Colaborador *remitente, Colaborador *emisor);
 };
 
 

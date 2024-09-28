@@ -18,5 +18,8 @@ int main () {
     usuario1.enviar ("Hola a todos");
     usuario2.enviar ("Hola Alicia");
     usuario3.enviar ("Todos estamos locos!");
+    cout <<endl;
+    mediador.enviarMensajePrivado ("hola",&usuario2, &usuario3);
+    mediador.enviarMensajePrivado ("que tal",&usuario3, &usuario2);
     return 0;
 }

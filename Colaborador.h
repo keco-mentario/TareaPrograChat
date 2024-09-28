@@ -1,10 +1,7 @@
-//
-// Created by Angie on 28/9/2024.
-//
 
 #ifndef COLABORADOR_H
 #define COLABORADOR_H
-#include <iostream>
+#include <sstream>
 
 class Mediador;
 

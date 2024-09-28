@@ -5,14 +5,14 @@
 #ifndef CHATMEDIADOR_H
 #define CHATMEDIADOR_H
 
-#include <vector>
 
 #include "Mediador.h"
+#include "ListaDoble.h"
 
 
 class ChatMediador: public Mediador {
 private:
-    std::vector<Colaborador*> colaboradores;
+    ListaDoble<Colaborador*> colaboradores;
 public:
     void registrar(Colaborador *colaborador) override;
     void enviar(const std::string &mensaje, Colaborador *remitente) override;

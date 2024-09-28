@@ -6,6 +6,8 @@
 #define MEDIADOR_H
 
 #include "Colaborador.h"
+using namespace std;
+
 
 class Mediador {
 public:

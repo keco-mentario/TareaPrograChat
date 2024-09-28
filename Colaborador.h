@@ -13,7 +13,7 @@ public:
     virtual void enviar (const std::string &mensaje) = 0;
     virtual void recibir (const std::string &mensaje) = 0;
     virtual void enviarPrivado (const std::string &mensaje) = 0;
-
+    virtual std::string mostrar () = 0;
     const std::string & get_nombre() const ;
     void set_nombre(const std::string &nombre) ;
     Colaborador(Mediador * const mediador, const std::string &nombre);

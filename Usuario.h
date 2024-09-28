@@ -15,6 +15,7 @@ public:
     void enviarPrivado(const std::string &mensaje);
     Usuario(Mediador * const mediador, const std::string &nombre);
     Usuario();
+    std::string mostrar ();
 };
 
 

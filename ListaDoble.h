@@ -21,7 +21,7 @@ public:
     void set_cola(Nodo<T> *cola);
 
 
-    void agregarInicio (const T& valor);
+    void agregarInicio ( T* valor);
     void agregarFinal (const T& valor);
     std::string imprimirLista ()const;
 
@@ -67,7 +67,7 @@ void ListaDoble<T>::set_cola(Nodo<T> *cola) {
 }
 
 template<class T>
-void ListaDoble<T>::agregarInicio (const T& valor) {
+void ListaDoble<T>::agregarInicio (T* valor) {
     Nodo <T> * nuevoNodo = new Nodo <T> (valor);
     if (cabeza == nullptr) {
         cabeza = cola = nuevoNodo; // le asigno la cabeza y el nodo el mismo valor
@@ -95,13 +95,11 @@ void ListaDoble<T>:: agregarFinal (const T& valor) {
 template<class T>
 std::string ListaDoble<T>::imprimirLista () const{
     stringstream ss;
-    //ss << "NULL <-" ;
     Nodo <T> * actual = cabeza;
     while (actual != nullptr) {
-        ss << actual->get_valor() <<" <-> ";
+        ss << actual->imprimirValor()<<endl;
         actual = actual ->get_siguiente();
     }
-   // ss <<"NULL";
     return ss.str();
 
 }

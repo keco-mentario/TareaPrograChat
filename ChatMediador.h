@@ -13,11 +13,13 @@
 
 class ChatMediador: public Mediador {
 private:
-    ListaDoble<Colaborador*> colaboradores;
+    ListaDoble<Colaborador>* colaboradores;
 public:
+    ChatMediador();
     void registrar(Colaborador *colaborador) override;
     void enviar(const std::string &mensaje, Colaborador *remitente) override;
     void enviarMensajePrivado(const std::string &mensaje, Colaborador *remitente, Colaborador *emisor);
+    string mostrarConectados();
 };
 
 

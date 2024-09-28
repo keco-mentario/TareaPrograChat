@@ -28,3 +28,9 @@ void Usuario::enviarPrivado(const std::string &mensaje) {
 void Usuario::recibir(const std::string &mensaje)  {
     std::cout <<get_nombre ()<<" recibio: "<< mensaje<<std::endl;
 }
+
+std::string Usuario::mostrar () {
+    stringstream ss;
+    ss<<get_nombre();
+    return ss.str();
+}

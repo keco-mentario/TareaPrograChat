@@ -5,13 +5,18 @@
 #include "ChatMediador.h"
 #include "Colaborador.h"
 
+
+ChatMediador::ChatMediador() {
+    colaboradores = new ListaDoble<Colaborador>();
+}
+
 void ChatMediador::registrar(Colaborador *colaborador)  {
-    colaboradores.agregarInicio(colaborador);
+    colaboradores->agregarInicio(colaborador);
 }
 
 
 void ChatMediador::enviar(const std::string &mensaje, Colaborador *remitente) {
-    Nodo<Colaborador*>* actual = colaboradores.get_cabeza();
+    Nodo<Colaborador>* actual = colaboradores->get_cabeza();
     while (actual != nullptr) {
         Colaborador* colaborador = actual->get_valor();
         if (colaborador != remitente) {
@@ -22,7 +27,7 @@ void ChatMediador::enviar(const std::string &mensaje, Colaborador *remitente) {
 }
 
 void ChatMediador::enviarMensajePrivado(const std::string &mensaje, Colaborador *receptor, Colaborador *emisor) {
-    Nodo<Colaborador*>* actual = colaboradores.get_cabeza();
+    Nodo<Colaborador>* actual = colaboradores->get_cabeza();
     while (actual != nullptr) {
         Colaborador* colaborador = actual->get_valor();
         if ((colaborador != emisor) && (colaborador == receptor) ){
@@ -33,4 +38,10 @@ void ChatMediador::enviarMensajePrivado(const std::string &mensaje, Colaborador 
         }
         actual = actual->get_siguiente();
     }
+}
+
+string ChatMediador::mostrarConectados() {
+    stringstream s;
+    s << colaboradores->imprimirLista();
+    return s.str();
 }

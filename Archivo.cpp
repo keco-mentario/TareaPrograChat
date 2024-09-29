@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void Archivo::guardarChats(string nombreArchivo, Colaborador* colaboradores) {
+void Archivo::guardarParticipantes(string nombreArchivo, ChatMediador* colaboradores) {
         ofstream archivo;
 
         try {
@@ -19,28 +19,20 @@ void Archivo::guardarChats(string nombreArchivo, Colaborador* colaboradores) {
                 throw std::runtime_error("No se pudo abrir el archivo: " + nombreArchivo);
             }
 
-            Nodo<Colaborador> aux = colaboradores;
-            /*
-            int index = 0;
-            while (aux != nullptr) {
-                aux = aux->getSiguiente();
-                if (aux != nullptr) {
-                    archivo << aux-> getObjeto()->getTipo()<<";"<<
-                     aux-> getObjeto()->getTitulo()<<";"<<
-                     aux-> getObjeto()->getAutor()<<";";
-                    if (aux-> getObjeto()->getTipo() == "Libro") {
-                        const Libro* libro = dynamic_cast<Libro*>(aux-> getObjeto());
-                        archivo << libro->getNumPaginas()<<endl;
-                    } else if(aux-> getObjeto()->getTipo() == "Revista") {
-                        const Revista* rev = dynamic_cast<Revista*>(aux-> getObjeto());
-                        archivo << rev->getNumEdicion()<<endl;
-                    }
-                }
-                index++;
+            ListaDoble<Colaborador>* lista = colaboradores->getColaboradores();
+            Nodo<Colaborador>* actual = lista->get_cabeza();  // Obtén el nodo cabeza
+
+            while (actual != nullptr) {
+                Colaborador* colaborador = actual->get_valor();  // Obtén el objeto Colaborador desde el nodo
+                archivo << colaborador->get_nombre() << std::endl;  // Ejemplo de guardar el nombre del colaborador
+
+                // Podrías guardar también sus mensajes, dependiendo de cómo estén estructurados
+                //archivo << "Mensajes: " << colaborador->getMensajes() << std::endl;  // Ejemplo
+
+                actual = actual->get_siguiente();  // Avanza al siguiente nodo
             }
 
-            archivo.close();// cierro el archivo
-*/
+            archivo.close();
          } catch (const std::exception& e) {
             std::cerr << "Ocurrio un error: " << e.what() << std::endl;
             if (archivo.is_open()) {
@@ -51,7 +43,7 @@ void Archivo::guardarChats(string nombreArchivo, Colaborador* colaboradores) {
 
 
 
-void Archivo::cargarChats(string nombreArchivo, Colaborador * mate) {
+void Archivo::cargarParticipantes(string nombreArchivo, ChatMediador * colaboradores) {
     ifstream archivo;
     try {
         archivo.open(nombreArchivo, std::ios::in);
@@ -61,26 +53,12 @@ void Archivo::cargarChats(string nombreArchivo, Colaborador * mate) {
         string lineas;
         while (getline(archivo,lineas)) {
             stringstream ss(lineas);
-            string tipos, titulos, autores, numPaginas, numEdiciones;
-            int nPagina, nEdicion;
-
-            getline(ss, tipos, ';');
-            getline(ss, titulos, ';');
-            getline(ss, autores, ';');
-
-           /* if (tipos == "Libro") {
-                getline(ss, numPaginas);
-                nPagina = stoi(numPaginas);
-                mate->getArchivo()->insertFirst(new Libro ( titulos, autores, nPagina));
-
-            } else if (tipos == "Revista") {
-                getline(ss, numEdiciones);
-                nEdicion = stoi(numEdiciones);
-                mate->getArchivo()->insertFirst(new Libro ( titulos, autores, nEdicion));
-            }else {
-                cout<<"Tipo incorrecto de datos en el archivo, estos no fueron ingresados";
-            }*/
-
+            string nombre;
+            getline(ss, nombre);
+            ListaDoble<Colaborador>* lista = colaboradores->getColaboradores();
+            Colaborador* nuevoColaborador = new Usuario();
+            nuevoColaborador->set_nombre(nombre);
+            lista->agregarInicio(nuevoColaborador);
         }
     } catch (const std::exception& e) {
         // Manejo de excepciones: mostrar error y hacer limpieza si es necesario

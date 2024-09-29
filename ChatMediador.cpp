@@ -46,10 +46,23 @@ string ChatMediador::mostrarConectados() {
     return s.str();
 }
 
-void ChatMediador::guardaChats(string nombreArchivo,Colaborador * mediador) {
+/*void ChatMediador::guardaChats(string nombreArchivo,ChatMediador * mediador) {
     Archivo::guardarChats(nombreArchivo, mediador);
 }
 
-void ChatMediador::cargaChats(string nombreArchivo,Colaborador *mediador) {
+void ChatMediador::cargaChats(string nombreArchivo,ChatMediador *mediador) {
     Archivo::cargarChats(nombreArchivo, mediador);
+}*/
+
+
+void ChatMediador::guardaParticipantes(string nombreArchivo,ChatMediador * mediador) {
+    Archivo::guardarParticipantes(nombreArchivo, mediador);
+}
+
+void ChatMediador::cargaParticipantes(string nombreArchivo,ChatMediador *mediador) {
+    Archivo::cargarParticipantes(nombreArchivo, mediador);
+}
+
+ListaDoble<Colaborador>* ChatMediador::getColaboradores() {
+    return colaboradores;
 }

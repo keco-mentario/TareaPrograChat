@@ -2,13 +2,14 @@
 #define ARCHIVO_H
 
 #include "ChatMediador.h"
+class ChatMediador;
 
 class Archivo {
 public:
-    static void guardarChats (string nombreArchivo, Colaborador * mediador);
-    static void cargarChats (string nombreArchivo, Colaborador *mediador);
-    static void guardarParticipantes (string nombreArchivo, Colaborador * mediador);
-    static void cargarParticipantes (string nombreArchivo, Colaborador * mediador);
+    static void guardarChats (string nombreArchivo, ChatMediador * mediador);
+    static void cargarChats (string nombreArchivo, ChatMediador *mediador);
+    static void guardarParticipantes (string nombreArchivo, ChatMediador * mediador);
+    static void cargarParticipantes (string nombreArchivo, ChatMediador * mediador);
 };
 
 

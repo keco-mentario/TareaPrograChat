@@ -45,3 +45,11 @@ string ChatMediador::mostrarConectados() {
     s << colaboradores->imprimirLista();
     return s.str();
 }
+
+void ChatMediador::guardaChats(string nombreArchivo,Colaborador * mediador) {
+    Archivo::guardarChats(nombreArchivo, mediador);
+}
+
+void ChatMediador::cargaChats(string nombreArchivo,Colaborador *mediador) {
+    Archivo::cargarChats(nombreArchivo, mediador);
+}

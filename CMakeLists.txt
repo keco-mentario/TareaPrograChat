@@ -9,4 +9,9 @@ add_executable(Mediador main.cpp
         ChatMediador.cpp
         ChatMediador.h
         Usuario.cpp
-        Usuario.h)
+        Usuario.h
+        Interfaz.h
+        ControladoraMenu.h
+        ControladoraMenu.cpp
+        Excepciones.cpp
+        Excepciones.h)

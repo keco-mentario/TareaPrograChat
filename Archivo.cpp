@@ -68,3 +68,35 @@ void Archivo::cargarParticipantes(string nombreArchivo, ChatMediador * colaborad
         }
     }
 }
+/*
+* void Archivo::escribirEnArchivo(const std::string& nombreArchivo, const ListaEnlazada<std::string>& mensajes) {
+    std::ofstream archivo(nombreArchivo, std::ios::out | std::ios::app);
+    if (!archivo) {
+        std::cerr << "Error al abrir el archivo para escribir." << std::endl;
+        return;
+    }
+
+    Nodo<std::string>* actual = mensajes.buscar("");
+    while (actual) {
+        archivo << actual->dato << std::endl;
+        actual = actual->siguiente;
+    }
+
+    archivo.close();
+}
+ */
+void Archivo::guardarChats (string nombreArchivo, const ListaDoble<std::string>& mensajes) {
+    std::ofstream archivo(nombreArchivo, std::ios::out | std::ios::app);
+    if (!archivo) {
+        std::cerr << "Error al abrir el archivo para escribir." << std::endl;
+        return;
+    }
+
+    Nodo<std::string>* actual = mensajes.get_cabeza();
+    while (actual) {
+        archivo << actual->get_valor() << std::endl;
+        actual = actual->get_siguiente();
+    }
+
+    archivo.close();
+}

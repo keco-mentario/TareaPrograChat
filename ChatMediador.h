@@ -15,17 +15,19 @@
 class ChatMediador: public Mediador {
 private:
     ListaDoble<Colaborador>* colaboradores;
+    ListaDoble<string> historialMensajes;
 public:
     ChatMediador();
     void registrar(Colaborador *colaborador) override;
     void enviar(const std::string &mensaje, Colaborador *remitente) override;
     void enviarMensajePrivado(const std::string &mensaje, Colaborador *remitente, Colaborador *emisor);
     string mostrarConectados();
-    void guardaChats(string nombreArchivo,ChatMediador *);
+    void guardaChats(string nombreArchivo,ListaDoble<std::string>& mensajes);
     void cargaChats(string nombreArchivo,ChatMediador *);
     void guardaParticipantes(string nombreArchivo,ChatMediador *);
     void cargaParticipantes(string nombreArchivo,ChatMediador *);
     ListaDoble<Colaborador>* getColaboradores();
+    ListaDoble<string>* getMensajes();
 };
 
 

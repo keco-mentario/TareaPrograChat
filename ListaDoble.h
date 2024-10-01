@@ -20,7 +20,6 @@ public:
 
     void set_cola(Nodo<T> *cola);
 
-
     void agregarInicio ( T* valor);
     void agregarFinal (const T& valor);
     std::string imprimirLista ()const;
@@ -103,7 +102,6 @@ std::string ListaDoble<T>::imprimirLista () const{
     return ss.str();
 
 }
-
 
 
 

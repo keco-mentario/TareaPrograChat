@@ -15,3 +15,7 @@ std::string Mensaje::getMensaje(){
 void Mensaje::setMensaje (std::string msj){
   mensaje = msj;
 }
+
+ListaDoble<string> Mensaje::gethistorialChat() {
+  return historialMensajes;
+}

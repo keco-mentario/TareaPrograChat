@@ -19,7 +19,8 @@ void ChatMediador::registrar(Colaborador *colaborador)  {
 void ChatMediador::enviar(const std::string &mensaje, Colaborador *remitente) {
     Nodo<Colaborador>* actual = colaboradores->get_cabeza();
     std::string mensajeCompleto = remitente->get_nombre() + ": " + mensaje;
-    historialMensajes.agregarInicio(&mensajeCompleto);
+
+    //historialMensajes.agregarInicio(&mensajeCompleto);
     while (actual != nullptr) {
         Colaborador* colaborador = actual->get_valor();
         if (colaborador != remitente) {
@@ -32,7 +33,7 @@ void ChatMediador::enviar(const std::string &mensaje, Colaborador *remitente) {
 void ChatMediador::enviarMensajePrivado(const std::string &mensaje, Colaborador *receptor, Colaborador *emisor) {
     Nodo<Colaborador>* actual = colaboradores->get_cabeza();
     std::string mensajeCompleto = receptor->get_nombre() + ": " + mensaje;
-    historialMensajes.agregarInicio(&mensajeCompleto);
+   // historialMensajes.agregarInicio(&mensajeCompleto);
     while (actual != nullptr) {
         Colaborador* colaborador = actual->get_valor();
         if ((colaborador != emisor) && (colaborador == receptor) ){

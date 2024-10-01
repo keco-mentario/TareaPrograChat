@@ -9,20 +9,20 @@
 #include "Mediador.h"
 #include "ListaDoble.h"
 #include "Usuario.h"
-#include "Archivo.h"
+#include "Mensaje.h"
 
 
 class ChatMediador: public Mediador {
 private:
     ListaDoble<Colaborador>* colaboradores;
-    ListaDoble<string> historialMensajes;
+    Mensaje * mensajes;
 public:
     ChatMediador();
     void registrar(Colaborador *colaborador) override;
     void enviar(const std::string &mensaje, Colaborador *remitente) override;
     void enviarMensajePrivado(const std::string &mensaje, Colaborador *remitente, Colaborador *emisor);
     string mostrarConectados();
-    void guardaChats(string nombreArchivo,ListaDoble<std::string>& mensajes);
+    void guardaChats(string nombreArchivo,Mensaje*);
     void cargaChats(string nombreArchivo,ChatMediador *);
     void guardaParticipantes(string nombreArchivo,ChatMediador *);
     void cargaParticipantes(string nombreArchivo,ChatMediador *);

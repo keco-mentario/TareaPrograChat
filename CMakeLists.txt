@@ -18,4 +18,10 @@ add_executable(TareaPrograChat
         Archivo.cpp
         Mensaje.h
         Mensaje.cpp
+        ControladoraMenu.cpp
+        ControladoraMenu.h
+        Excepciones.cpp
+        Excepciones.h
+        Interfaz.cpp
+        Interfaz.h
 )

@@ -8,7 +8,7 @@
 
 ChatMediador::ChatMediador() {
     colaboradores = new ListaDoble<Colaborador>();
-   // historialMensajes = new ListaDoble<string>;
+    historial = new ListaDoble<Mensaje> ();
 }
 
 void ChatMediador::registrar(Colaborador *colaborador)  {
@@ -16,15 +16,20 @@ void ChatMediador::registrar(Colaborador *colaborador)  {
 }
 
 
-void ChatMediador::enviar(const std::string &mensaje, Colaborador *remitente) {
+void ChatMediador::enviar(const std::string &mensajes, Colaborador *remitente) {
     Nodo<Colaborador>* actual = colaboradores->get_cabeza();
-    std::string mensajeCompleto = remitente->get_nombre() + ": " + mensaje;
+    Nodo<Mensaje>* mensajeActual = historial->get_cabeza();
+
+    Mensaje *mensaje =new Mensaje (mensajes);
+    historial->agregarInicio(mensaje);
+
+    std::string mensajeCompleto = remitente->get_nombre() + ": " + mensajes;
 
     //historialMensajes.agregarInicio(&mensajeCompleto);
     while (actual != nullptr) {
         Colaborador* colaborador = actual->get_valor();
         if (colaborador != remitente) {
-            colaborador->recibir(mensaje);
+            colaborador->recibir(mensajes);
         }
         actual = actual->get_siguiente();
     }
@@ -52,8 +57,8 @@ string ChatMediador::mostrarConectados() {
     return s.str();
 }
 
-void ChatMediador::guardaChats(string nombreArchivo,ListaDoble<std::string>& mensajes) {
-    Archivo::guardarChats(nombreArchivo, mensajes);
+void ChatMediador::guardaChats(string nombreArchivo,ChatMediador * mediador) {
+    Archivo::guardarChats(nombreArchivo, mediador);
 }
 
 /*
@@ -74,3 +79,6 @@ ListaDoble<Colaborador>* ChatMediador::getColaboradores() {
     return colaboradores;
 }
 
+ListaDoble<Mensaje>* ChatMediador::getHistorialMensajes() {
+    return historial;
+}

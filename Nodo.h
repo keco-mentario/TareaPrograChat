@@ -17,7 +17,7 @@ public:
     void set_siguiente(Nodo<T> *siguiente);
     Nodo<T> * get_anterior() const;
     void set_anterior(Nodo<T> *anterior);
-    string imprimirValor();
+    std::string imprimirValor();
     //~Nodo();
 private:
     T *valor;
@@ -65,6 +65,6 @@ void Nodo<T>::set_anterior(Nodo<T> *anterior) {
 }
 
 template<class T>
-string Nodo<T>::imprimirValor() {
+std::string Nodo<T>::imprimirValor() {
     return get_valor()->mostrar();
 }

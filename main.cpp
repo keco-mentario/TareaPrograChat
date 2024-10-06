@@ -33,6 +33,8 @@ int main () {
     cout <<endl;
     mediador.enviarMensajePrivado ("que tal?",&usuario3, &usuario2);
 
+    mediador.guardaChats(historiaChat, &mediador);
+
 //mediador.guardaChats(historiaChat,);
 
     return 0;

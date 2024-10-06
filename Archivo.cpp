@@ -68,33 +68,43 @@ void Archivo::cargarParticipantes(string nombreArchivo, ChatMediador * colaborad
         }
     }
 }
-/*
-* void Archivo::escribirEnArchivo(const std::string& nombreArchivo, const ListaEnlazada<std::string>& mensajes) {
-    std::ofstream archivo(nombreArchivo, std::ios::out | std::ios::app);
-    if (!archivo) {
-        std::cerr << "Error al abrir el archivo para escribir." << std::endl;
+
+void Archivo::cargarChats(const std::string &nombreArchivo, ChatMediador *mediador) {
+    std::ifstream archivo(nombreArchivo);
+    if (!archivo.is_open()) {
+        std::cerr << "Error abriendo archivo para cargar chats." << std::endl;
         return;
     }
 
-    Nodo<std::string>* actual = mensajes.buscar("");
-    while (actual) {
-        archivo << actual->dato << std::endl;
-        actual = actual->siguiente;
+    ListaDoble<Mensaje>* historial = mediador->getHistorialMensajes();
+    //Mensaje* nuevoMensaje = new Mensaje();
+
+    std::string linea;
+    while (std::getline(archivo, linea)) {
+        // Suponiendo que cada línea es un mensaje
+        Mensaje mensaje(linea);  // Crear un nuevo mensaje con la línea leída
+       // mediador->getHistorialMensajes()->agregar(mensaje);  // Agregar el mensaje al historial
     }
 
     archivo.close();
 }
- */
-void Archivo::guardarChats (string nombreArchivo, const ListaDoble<std::string>& mensajes) {
-    std::ofstream archivo(nombreArchivo, std::ios::out | std::ios::app);
-    if (!archivo) {
-        std::cerr << "Error al abrir el archivo para escribir." << std::endl;
+
+
+
+void Archivo::guardarChats(const std::string nombreArchivo, ChatMediador *mediador) {
+    std::ofstream archivo(nombreArchivo);
+    if (!archivo.is_open()) {
+        std::cerr << "Error abriendo archivo para guardar chats." << std::endl;
         return;
     }
 
-    Nodo<std::string>* actual = mensajes.get_cabeza();
-    while (actual) {
-        archivo << actual->get_valor() << std::endl;
+    // Guardamos todos los mensajes del historial
+    ListaDoble<Mensaje>* historial = mediador->getHistorialMensajes();
+    Nodo<Mensaje>* actual = historial->get_cabeza(); // Asegúrate de tener un método para obtener la cabeza de la lista
+
+    while (actual != nullptr) {
+        Mensaje *mensaje = actual->get_valor(); // Obtener el dato (Mensaje)
+        archivo << mensaje->getMensaje() << std::endl; // Escribe el mensaje en el archivo
         actual = actual->get_siguiente();
     }
 

@@ -4,13 +4,13 @@
 
 #ifndef MENSAJE_H
 #define MENSAJE_H
-#include "Usuario.h"
+#include "ChatMediador.h"
 #include "ListaDoble.h"
 
 
 class Mensaje {
 private:
-  Usuario * usuario;
+  Mediador * usuario;
   std::string mensaje;
   ListaDoble<string> historialMensajes;
 public:

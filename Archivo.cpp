@@ -75,17 +75,13 @@ void Archivo::cargarChats(const std::string &nombreArchivo, ChatMediador *mediad
         std::cerr << "Error abriendo archivo para cargar chats." << std::endl;
         return;
     }
-
     ListaDoble<Mensaje>* historial = mediador->getHistorialMensajes();
-    //Mensaje* nuevoMensaje = new Mensaje();
-
     std::string linea;
     while (std::getline(archivo, linea)) {
-        // Suponiendo que cada línea es un mensaje
-        Mensaje mensaje(linea);  // Crear un nuevo mensaje con la línea leída
-       // mediador->getHistorialMensajes()->agregar(mensaje);  // Agregar el mensaje al historial
+        Mensaje mensaje(linea);
+        Mensaje* nuevoMensaje = new Mensaje(mensaje);
+       mediador->getHistorialMensajes()->agregarInicio(nuevoMensaje);
     }
-
     archivo.close();
 }
 
@@ -98,13 +94,12 @@ void Archivo::guardarChats(const std::string nombreArchivo, ChatMediador *mediad
         return;
     }
 
-    // Guardamos todos los mensajes del historial
     ListaDoble<Mensaje>* historial = mediador->getHistorialMensajes();
-    Nodo<Mensaje>* actual = historial->get_cabeza(); // Asegúrate de tener un método para obtener la cabeza de la lista
+    Nodo<Mensaje>* actual = historial->get_cabeza();
 
     while (actual != nullptr) {
-        Mensaje *mensaje = actual->get_valor(); // Obtener el dato (Mensaje)
-        archivo << mensaje->getMensaje() << std::endl; // Escribe el mensaje en el archivo
+        Mensaje *mensaje = actual->get_valor();
+        archivo << mensaje->getMensaje() << std::endl;
         actual = actual->get_siguiente();
     }
 

@@ -19,3 +19,9 @@ void Mensaje::setMensaje (std::string msj){
 ListaDoble<string> Mensaje::gethistorialChat() {
   return historialMensajes;
 }
+
+std::string Mensaje::mostrar () {
+  stringstream ss;
+  ss<<getMensaje();
+  return ss.str();
+}

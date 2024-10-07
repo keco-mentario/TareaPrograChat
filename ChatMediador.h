@@ -25,6 +25,7 @@ public:
     void enviar(const std::string &mensaje, Colaborador *remitente) override;
     void enviarMensajePrivado(const std::string &mensaje, Colaborador *remitente, Colaborador *emisor);
     string mostrarConectados();
+    string mostrarHistorialChat();
     void guardaChats(string nombreArchivo,ChatMediador*);
     void cargaChats(string nombreArchivo,ChatMediador *);
     void guardaParticipantes(string nombreArchivo,ChatMediador *);

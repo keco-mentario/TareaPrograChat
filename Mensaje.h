@@ -18,6 +18,7 @@ public:
   std::string getMensaje();
   void setMensaje (std::string);
   ListaDoble<string> gethistorialChat();
+  string mostrar ();
 };
 
 

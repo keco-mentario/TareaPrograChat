@@ -11,7 +11,7 @@ int Interfaz::menu() {
     int op;
     while (finalizado == false) {
         try {
-            system("pause");
+           // system("pause");
            // system("cls");
             std::cout << std::endl;
             std::cout << "-------------     CHAT     -----------" << std::endl;

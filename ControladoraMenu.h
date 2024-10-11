@@ -5,17 +5,20 @@
 #ifndef CONTROLADORAMENU_H
 #define CONTROLADORAMENU_H
 
+#include "Archivo.h"
+#include "ChatMediador.h"
 #include "Interfaz.h"
 
 class ControladoraMenu {
-
     private:
-	//Aqui hay que agregar como atributo las listas/vectores que se necesiten.
+	ChatMediador * mediando;
+	string archivoMensaje;
+	string archivoUsuarios;
     public:
     ControladoraMenu();;
     virtual ~ControladoraMenu();
     // Gets
-
+	ChatMediador * getChatMediador ();
 
     int controlMenu();
     void control0(); //Este es el control mas importante.

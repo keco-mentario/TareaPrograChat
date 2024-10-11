@@ -3,11 +3,26 @@
 //
 
 #include "ControladoraMenu.h"
+
+ControladoraMenu::ControladoraMenu() {
+    mediando = new ChatMediador();
+    archivoMensaje ="Historial.txt";
+    archivoUsuarios = "usuarios.txt";
+}
+
+ControladoraMenu::~ControladoraMenu() {
+    if (mediando!=nullptr) delete mediando;
+}
+
+ChatMediador * ControladoraMenu::getChatMediador () {
+    return mediando;
+}
+
 int ControladoraMenu::controlMenu(){ return Interfaz::menu(); }
 void ControladoraMenu::control0() { //Este es el control mas importante.
     int op;
     do {
-        op = controlMenu();
+        op = Interfaz::menu();
         switch (op) {
             case 1: control1(); break;
             case 2: control2(); break;

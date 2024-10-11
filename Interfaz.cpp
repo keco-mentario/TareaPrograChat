@@ -4,9 +4,6 @@
 
 #include "Interfaz.h"
 
-
-
-
 int Interfaz::menu() {
 
     bool finalizado = false;

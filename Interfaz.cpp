@@ -12,7 +12,7 @@ int Interfaz::menu() {
     while (finalizado == false) {
         try {
             system("pause");
-            system("cls");
+           // system("cls");
             std::cout << std::endl;
             std::cout << "-------------     CHAT     -----------" << std::endl;
             std::cout << "-------------------------------------------" << std::endl;
@@ -47,9 +47,11 @@ int Interfaz::menu() {
 }
 
 void Interfaz::conectarse() {
+
 }
 
 void Interfaz::verUsuariosConectados() {
+
 }
 
 void Interfaz::verHistorialDeChat() {

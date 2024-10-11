@@ -20,7 +20,7 @@ ChatMediador * ControladoraMenu::getChatMediador () {
 
 int ControladoraMenu::controlMenu(){ return Interfaz::menu(); }
 void ControladoraMenu::control0() { //Este es el control mas importante.
-    int op;
+    int op = 0;
     do {
         op = Interfaz::menu();
         switch (op) {
@@ -38,12 +38,57 @@ void ControladoraMenu::control0() { //Este es el control mas importante.
     } while (op != 8);
 }
 
-void ControladoraMenu::control1() {Interfaz::conectarse();}
-void ControladoraMenu::control2() {Interfaz::verUsuariosConectados();}
-void ControladoraMenu::control3() {Interfaz::verHistorialDeChat();}
-void ControladoraMenu::control4() {Interfaz::enviarMensajeATodos();}
-void ControladoraMenu::control5() {Interfaz::enviarMensajeAlPrivado();}
-void ControladoraMenu::control6() {Interfaz::cargarTodosLosArchivos();}
-void ControladoraMenu::control7() {Interfaz::escribirDatosEnLosArchivos();}
-void ControladoraMenu::control8() {Interfaz::despedida();}
-void ControladoraMenu::control9() {Interfaz::msjErrorRango();}
+void ControladoraMenu::control1() {
+       // Interfaz::conectarse();
+        std::string nombre;
+        std::cout <<"Digite su nombre: ";
+        std::cin >> nombre;
+        Usuario usuario1 (mediando, nombre);
+        mediando->registrar(&usuario1);
+}
+
+void ControladoraMenu::control2() {
+    //Interfaz::verUsuariosConectados();
+    cout << mediando->mostrarConectados()<<endl;
+}
+
+void ControladoraMenu::control3() {
+    //Interfaz::verHistorialDeChat();
+    cout <<mediando->mostrarHistorialChat();
+}
+
+void ControladoraMenu::control4() {
+    //Interfaz::enviarMensajeATodos();
+    Usuario usuario1 (mediando, "Alicia");
+    mediando->registrar(&usuario1);
+    usuario1.enviar ("Hola a todos");
+}
+
+void ControladoraMenu::control5() {
+    //Interfaz::enviarMensajeAlPrivado();
+    Usuario usuario2 (mediando, "Cheshire cat");
+    Usuario usuario3 (mediando, "Sombrerero loco");
+    usuario2.enviar ("Hola Alicia");
+    usuario3.enviar ("Todos estamos locos!");
+    mediando->enviarMensajePrivado ("hola",&usuario2, &usuario3);
+}
+
+void ControladoraMenu::control6() {
+    //Interfaz::cargarTodosLosArchivos();
+    mediando->cargaChats(archivoMensaje, mediando);
+    mediando->cargaParticipantes(archivoUsuarios, mediando);
+}
+
+void ControladoraMenu::control7() {
+   // Interfaz::escribirDatosEnLosArchivos();
+    mediando->guardaChats(archivoMensaje, mediando);
+    mediando->guardaParticipantes(archivoUsuarios, mediando);
+}
+
+void ControladoraMenu::control8() {
+    Interfaz::despedida();
+}
+
+void ControladoraMenu::control9() {
+    Interfaz::msjErrorRango();
+}

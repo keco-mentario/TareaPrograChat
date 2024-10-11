@@ -8,10 +8,11 @@
 #include <iostream>
 #include <sstream>
 #include "Excepciones.h"
+#include "Usuario.h"
+#include "Mediador.h"
 
 class Interfaz {
 public:
-
         static int menu();
         static void conectarse();
         static void verUsuariosConectados();

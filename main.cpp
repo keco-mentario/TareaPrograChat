@@ -2,10 +2,16 @@
 #include <iostream>
 
 #include "ChatMediador.h"
+#include "ControladoraMenu.h"
 #include "Usuario.h"
 
 int main () {
-    string usuariosChat = "usuarios.txt";
+
+ ControladoraMenu* sistema = new ControladoraMenu();
+ sistema->control0();
+
+ delete sistema;
+    /*string usuariosChat = "usuarios.txt";
     string historiaChat = "Historial.txt";
 
     ChatMediador mediador;
@@ -17,7 +23,8 @@ int main () {
 
    mediador.registrar(&usuario1);
    mediador.registrar(&usuario2);
-   mediador.registrar(&usuario3);cout << "usuarios conectados; "<<endl;
+   mediador.registrar(&usuario3);
+    cout << "usuarios conectados; "<<endl;
    cout << mediador.mostrarConectados()<<endl;
 
     mediador.guardaParticipantes( usuariosChat, &mediador);
@@ -36,7 +43,7 @@ int main () {
     mediador.guardaChats(historiaChat, &mediador);
     mediador.cargaChats(historiaChat, &mediador);
 
-     cout <<mediador.mostrarHistorialChat();
+     cout <<mediador.mostrarHistorialChat();*/
 
     return 0;
 }

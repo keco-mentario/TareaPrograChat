@@ -43,8 +43,8 @@ void ControladoraMenu::control1() {
         std::string nombre;
         std::cout <<"Digite su nombre: ";
         std::cin >> nombre;
-        Usuario usuario1 (mediando, nombre);
-        mediando->registrar(&usuario1);
+        Usuario* usuario1 = new Usuario(mediando, nombre);
+        mediando->registrar(usuario1);
 }
 
 void ControladoraMenu::control2() {
@@ -59,18 +59,42 @@ void ControladoraMenu::control3() {
 
 void ControladoraMenu::control4() {
     //Interfaz::enviarMensajeATodos();
-    Usuario usuario1 (mediando, "Alicia");
-    mediando->registrar(&usuario1);
-    usuario1.enviar ("Hola a todos");
+    std::string nombre, mensaje;
+
+    std::cout << "Ingrese su nombre: ";
+    std::getline(std::cin, nombre);  // Capturamos nombres con espacios
+
+    Usuario* usuario = new Usuario(mediando, nombre);
+    mediando->registrar(usuario);  // Registramos el usuario en el mediador
+
+    std::cout << "Escriba su mensaje para todos: ";
+    std::getline(std::cin, mensaje);  // Capturamos el mensaje completo
+
+    usuario->enviar(mensaje);  // Enviamos el mensaje usando el mediador
 }
 
 void ControladoraMenu::control5() {
     //Interfaz::enviarMensajeAlPrivado();
-    Usuario usuario2 (mediando, "Cheshire cat");
-    Usuario usuario3 (mediando, "Sombrerero loco");
-    usuario2.enviar ("Hola Alicia");
-    usuario3.enviar ("Todos estamos locos!");
-    mediando->enviarMensajePrivado ("hola",&usuario2, &usuario3);
+    std::string nombreEmisor, nombreReceptor, mensaje;
+
+    std::cout << "Ingrese el nombre del emisor: ";
+    std::getline(std::cin, nombreEmisor);
+
+    std::cout << "Ingrese el nombre del receptor: ";
+    std::getline(std::cin, nombreReceptor);
+
+    std::cout << "Escriba el mensaje: ";
+    std::getline(std::cin, mensaje);
+
+    // Buscamos a los usuarios en la lista de colaboradores
+    Usuario* emisor = dynamic_cast<Usuario*>(mediando->getColaboradores()->buscar(nombreEmisor));
+    Usuario* receptor = dynamic_cast<Usuario*>(mediando->getColaboradores()->buscar(nombreReceptor));
+
+    if (emisor && receptor) {
+        mediando->enviarMensajePrivado(mensaje, receptor, emisor);
+    } else {
+        std::cout << "Uno o ambos usuarios no están registrados." << std::endl;
+    }
 }
 
 void ControladoraMenu::control6() {

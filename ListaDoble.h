@@ -23,7 +23,7 @@ public:
     void agregarInicio ( T* valor);
     void agregarFinal (const T& valor);
     std::string imprimirLista ()const;
-
+    T* buscar(const std::string& nombre) const;
 
 };
 
@@ -103,6 +103,16 @@ std::string ListaDoble<T>::imprimirLista () const{
 
 }
 
-
+template <class T>
+T* ListaDoble<T>::buscar(const std::string& nombre) const {
+    Nodo<T>* actual = cabeza;
+    while (actual != nullptr) {
+        if (actual->get_valor()->get_nombre() == nombre) {
+            return actual->get_valor();
+        }
+        actual = actual->get_siguiente();
+    }
+    return nullptr;  // Si no se encuentra
+}
 
 #endif //LISTADOBLE_H

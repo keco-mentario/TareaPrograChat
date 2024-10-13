@@ -61,14 +61,17 @@ void ControladoraMenu::control4() {
     //Interfaz::enviarMensajeATodos();
     std::string nombre, mensaje;
 
+    cin.ignore();
     std::cout << "Ingrese su nombre: ";
     std::getline(std::cin, nombre);  // Capturamos nombres con espacios
+
 
     Usuario* usuario = new Usuario(mediando, nombre);
     mediando->registrar(usuario);  // Registramos el usuario en el mediador
 
     std::cout << "Escriba su mensaje para todos: ";
     std::getline(std::cin, mensaje);  // Capturamos el mensaje completo
+    cin.ignore();
 
     usuario->enviar(mensaje);  // Enviamos el mensaje usando el mediador
 }
@@ -77,12 +80,15 @@ void ControladoraMenu::control5() {
     //Interfaz::enviarMensajeAlPrivado();
     std::string nombreEmisor, nombreReceptor, mensaje;
 
+    cin.ignore();
     std::cout << "Ingrese el nombre del emisor: ";
     std::getline(std::cin, nombreEmisor);
 
+    cin.ignore();
     std::cout << "Ingrese el nombre del receptor: ";
     std::getline(std::cin, nombreReceptor);
 
+    cin.ignore();
     std::cout << "Escriba el mensaje: ";
     std::getline(std::cin, mensaje);
 
